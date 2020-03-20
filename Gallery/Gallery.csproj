@@ -23,6 +23,21 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\BsMultiSelect\dist\css\BsMultiSelect.css.map" />
+    <None Include="wwwroot\lib\BsMultiSelect\dist\css\BsMultiSelect.min.css.map" />
+    <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.esm.js" />
+    <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.esm.js.map" />
+    <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.esm.min.js" />
+    <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.esm.min.js.map" />
+    <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.js" />
+    <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.js.map" />
+    <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.min.js" />
+    <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.min.js.map" />
   </ItemGroup>
 
 </Project>
