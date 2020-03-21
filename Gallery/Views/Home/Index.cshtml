@@ -1,5 +1,11 @@
-﻿@{
+﻿@model IEnumerable<Photo>
+@{
     ViewData["Title"] = "Home Page";
+    IEnumerable<Category> categories = null;
+    if(ViewBag.Categories != null)
+    {
+        categories = ViewBag.Categories as IEnumerable<Category>;
+    }
 }
 
 
@@ -9,36 +15,29 @@
             <h2 class="text-center">Yaman's Gallery</h2>
             @*<p class="text-center">This is very expensive application. The more you browse the more you pay me lol :)</p>*@
 
-            <ul class="nav justify-content-center mt-2">
+        <ul class="nav justify-content-center mt-2">
+            
+            @foreach (var category in categories)
+            {
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
+                    <a class="nav-link @(category.Id == ViewBag.CategoryId ? "active" : "")" asp-action="Index" asp-route-categoryId="@category.Id">@category.Name</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
+            }
+        </ul>
         </div>
         <div class="row photos">
-            <div class="col-sm-6 col-md-4 col-lg-3 item">
-                <a href="img/desk.jpg" data-lightbox="photos"><img class="img-fluid" src="img/desk.jpg"></a>
-                <div>
-                    <a href="#" class="badge badge-primary m-1">Primary</a>
-                    <a href="#" class="badge badge-primary m-1">Primary</a>
-                    <a href="#" class="badge badge-primary m-1">Primary</a>
-                    <a href="#" class="badge badge-primary m-1">Primary</a>
+            @foreach (var photo in Model)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3 item">
+                    <a href="@photo.Url" data-lightbox="photos"><img class="img-fluid" src="@photo.Url"></a>
+                    <div>
+                        <a href="@photo.ActionUrl" class="badge badge-primary m-1">visit</a>
+                        <a href="#" class="badge badge-info m-1">company: @photo.Company</a>
+                        <a href="#" class="badge badge-secondary m-1">owner: @photo.Owner</a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="img/building.jpg" data-lightbox="photos"><img class="img-fluid" src="img/building.jpg"></a></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="img/loft.jpg" data-lightbox="photos"><img class="img-fluid" src="img/loft.jpg"></a></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="img/building.jpg" data-lightbox="photos"><img class="img-fluid" src="img/building.jpg"></a></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="img/loft.jpg" data-lightbox="photos"><img class="img-fluid" src="img/loft.jpg"></a></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="img/desk.jpg" data-lightbox="photos"><img class="img-fluid" src="img/desk.jpg"></a></div>
+            }
+
         </div>
     </div>
 </div>

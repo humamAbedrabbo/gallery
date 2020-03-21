@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Gallery.Models;
 using Microsoft.AspNetCore.Authorization;
+using Gallery.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gallery.Controllers
 {
@@ -14,15 +16,26 @@ namespace Gallery.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly GalleryContext context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, GalleryContext context)
         {
             _logger = logger;
+            this.context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int? categoryId = null)
         {
-            return View();
+            ViewData["Categories"] = await context.Categories.OrderBy(x => x.Name).ToListAsync();
+            ViewData["CategoryId"] = categoryId;
+            IEnumerable<Photo> list = await context.PhotoCategories
+                .Include(p => p.Photo)
+                .Include(p => p.Category)
+                .Where(x => x.CategoryId == categoryId)
+                .Select(x => x.Photo)
+                .ToListAsync();
+
+            return View(list);
         }
 
         public IActionResult Privacy()
