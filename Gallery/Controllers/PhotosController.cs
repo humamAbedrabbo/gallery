@@ -70,7 +70,7 @@ namespace Gallery.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description,Owner,Company,ActionUrl,Categories")] Photo photo, IFormFile file)
         {
-            if (file != null || file.Length == 0)
+            if (file == null || file.Length == 0)
             {
                 ModelState.AddModelError("file", "Error in file");
                 return View(photo);
@@ -81,7 +81,7 @@ namespace Gallery.Controllers
                 // Upload Picture
                 if (file != null && file.Length > 0)
                 {
-                    var fileName = $"{Path.GetExtension(file.FileName)}";
+                    var fileName = $"{Path.GetFileName(file.FileName)}";
                     var filePath = Path.Combine(env.WebRootPath, "img", fileName);
 
                     using (var stream = System.IO.File.Create(filePath))
@@ -155,7 +155,7 @@ namespace Gallery.Controllers
                 {
                     var oldFileName = Path.Combine(env.WebRootPath, "img", photo.FileName);
                     var oldFileName2 = Path.Combine(env.WebRootPath, "img", $"DEL-{photo.FileName}");
-                    var fileName = $"{Path.GetExtension(file.FileName)}";
+                    var fileName = $"{Path.GetFileName(file.FileName)}";
                     var filePath = Path.Combine(env.WebRootPath, "img", fileName);
 
                     using (var stream = System.IO.File.Create(filePath))

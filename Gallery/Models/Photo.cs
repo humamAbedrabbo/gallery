@@ -14,14 +14,12 @@ namespace Gallery.Models
         [StringLength(50)]
         public string Name { get; set; }
 
-        [Required]
         [StringLength(100)]
         [Display(Name = "File name")]
         public string FileName { get; set; }
 
-        [Required]
         [StringLength(200)]
-        [DataType(DataType.ImageUrl)]
+        [DataType(DataType.Url)]
         public string Url { get; set; }
         
         public long Length { get; set; }
