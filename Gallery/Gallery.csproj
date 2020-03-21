@@ -38,6 +38,8 @@
     <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.js.map" />
     <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.min.js" />
     <None Include="wwwroot\lib\BsMultiSelect\dist\js\BsMultiSelect.min.js.map" />
+    <None Include="wwwroot\lib\popper.js\dist\umd\popper.min.js" />
+    <None Include="wwwroot\lib\popper.js\dist\umd\popper.min.js.map" />
   </ItemGroup>
 
 </Project>
