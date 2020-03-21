@@ -97,6 +97,8 @@ namespace Gallery.Controllers
                 if (ModelState.IsValid)
                 {
                     _context.Add(photo);
+                    photo.PhotoCategories.AddRange(photo.Categories.Select(x => new PhotoCategory { CategoryId = x }));
+
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
@@ -171,6 +173,19 @@ namespace Gallery.Controllers
                 {
                     try
                     {
+                        _context.Entry(photo).State = EntityState.Modified;
+                        await _context.Entry(photo)
+                            .Collection(x => x.PhotoCategories)
+                            .LoadAsync();
+                        photo.PhotoCategories.RemoveAll(x => !photo.Categories.Contains(x.CategoryId));
+                        foreach (var item in photo.Categories)
+                        {
+                            if(!photo.PhotoCategories.Any(x => x.CategoryId == item))
+                            {
+                                photo.PhotoCategories.Add(new PhotoCategory { CategoryId = item });
+                            }
+                        }
+
                         _context.Update(photo);
                         await _context.SaveChangesAsync();
                     }
