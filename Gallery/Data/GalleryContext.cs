@@ -15,6 +15,8 @@ namespace Gallery.Data
         {
         }
 
+        public DbSet<Category> Categories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -46,6 +48,15 @@ namespace Gallery.Data
             admin.PasswordHash = hasher.HashPassword(admin, "Welcome@123");
             builder.Entity<AppUser>().HasData(admin);
 
+            // Add Category
+            builder.Entity<Category>().Property(p => p.Name).HasMaxLength(30).IsRequired();
+            builder.Entity<Category>().HasIndex(p => p.Name).IsUnique();
+
+            // Add Default Categories
+            builder.Entity<Category>().HasData(new Category { Id = 1, Name = "General" });
+            builder.Entity<Category>().HasData(new Category { Id = 2, Name = "Architecture" });
+            builder.Entity<Category>().HasData(new Category { Id = 3, Name = "Technology" });
+            builder.Entity<Category>().HasData(new Category { Id = 4, Name = "Animals" });
         }
     }
 }

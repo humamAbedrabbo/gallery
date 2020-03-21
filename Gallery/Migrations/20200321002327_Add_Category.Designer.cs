@@ -4,14 +4,16 @@ using Gallery.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Gallery.Migrations
 {
     [DbContext(typeof(GalleryContext))]
-    partial class GalleryContextModelSnapshot : ModelSnapshot
+    [Migration("20200321002327_Add_Category")]
+    partial class Add_Category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,15 +90,15 @@ namespace Gallery.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aacd93ee-c9a3-469b-ae69-b4d8118993c8",
+                            ConcurrencyStamp = "49293c9d-7b9c-4e45-8f7f-07d846158850",
                             Email = "admin@gallery",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GALLERY",
                             NormalizedUserName = "ADMIN@GALLERY",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBrB/YKmupE48zi1d8RO5YT5KvD4ISB064yNNALsCIvk/+aYLMlLRT0ONF0V/x40bw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKq6YgTW7JOfF9Ome6TmnLTEtQ9HL7EsnbSZ2iKk2sy7DK3zi+bpb8Eef/0aSW2DeA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e2cd6f77-b40c-45ea-bd53-4918efd9cc6e",
+                            SecurityStamp = "faafd798-7337-448f-a132-248afd7f1556",
                             TwoFactorEnabled = false,
                             UserName = "admin@gallery"
                         });
@@ -120,28 +122,6 @@ namespace Gallery.Migrations
                         .IsUnique();
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "General"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Architecture"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Technology"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Animals"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -174,14 +154,14 @@ namespace Gallery.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "92077472-b117-4a01-b9a1-88626bec60e8",
+                            ConcurrencyStamp = "65645e30-a67b-4efe-8547-dbcdd4cf5af4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "de259c0c-8bcb-41a2-8fd5-0a9809b7817b",
+                            ConcurrencyStamp = "d1e19a36-5fe8-448e-8a9a-e18affb357c5",
                             Name = "User",
                             NormalizedName = "USER"
                         });
