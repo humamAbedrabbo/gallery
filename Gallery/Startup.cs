@@ -32,6 +32,7 @@ namespace Gallery
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<GalleryContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
