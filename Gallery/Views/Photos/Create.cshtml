@@ -1,0 +1,72 @@
+﻿@model Gallery.Models.Photo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Photo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="file">Photo</label>
+                <input type="file" name="file" class="form-control-file" id="file">
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea rows="3" asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Owner" class="control-label"></label>
+                <input asp-for="Owner" class="form-control" />
+                <span asp-validation-for="Owner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company" class="control-label"></label>
+                <input asp-for="Company" class="form-control" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActionUrl" class="control-label"></label>
+                <input asp-for="ActionUrl" class="form-control" />
+                <span asp-validation-for="ActionUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Categories" class="col-md-3 col-form-label"></label>
+                <div class="col-md-12">
+                    <select multiple="multiple" style="display: none;" asp-for="Categories" class="form-control" asp-items="ViewBag.Categories">
+                        <option disabled value="">--- SELECT ---</option>
+                    </select>
+                    <span class="help-block"></span>
+                    <span asp-validation-for="Categories" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    $(function () {
+        $("#Categories").bsMultiSelect();
+    });
+</script>
+}

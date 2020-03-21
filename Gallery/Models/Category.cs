@@ -9,5 +9,7 @@ namespace Gallery.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public List<PhotoCategory> PhotoCategories { get; set; } = new List<PhotoCategory>();
+
     }
 }
