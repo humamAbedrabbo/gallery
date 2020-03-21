@@ -49,6 +49,7 @@ namespace Gallery.Data
             };
             admin.PasswordHash = hasher.HashPassword(admin, "Welcome@123");
             builder.Entity<AppUser>().HasData(admin);
+            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> { UserId = "1", RoleId = "1" });
 
             // Add Category
             builder.Entity<Category>().Property(p => p.Name).HasMaxLength(30).IsRequired();
